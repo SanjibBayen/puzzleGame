@@ -42,13 +42,16 @@ function Dstart(e) {
 
 function Dover(e) {
     e.preventDefault(); 
+   
 }
 
 function Denter(e) {
     e.preventDefault(); 
 }
 
-function Dleave() {}
+function Dleave() {
+ 
+}
 
 function Ddrop(e) {
     e.preventDefault(); 
@@ -97,50 +100,27 @@ if(!nextImg.src.includes("picture/3.jpg"))
     dragSound.currentTime = 0;
 }
 
-let touchStartX, touchStartY, touchedImg;
-
 function Tstart(e) {
+    thisImg = e.target;
     e.preventDefault();
-    let touch = e.changedTouches[0];
-    touchStartX = touch.clientX;
-    touchStartY = touch.clientY;
-    touchedImg = e.target;
     dragSound.play();
 }
 
 function Tmove(e) {
-    e.preventDefault();
-    let touch = e.changedTouches[0];
-    let touchX = touch.clientX;
-    let touchY = touch.clientY;
-
-    if (touchedImg) {
-        touchedImg.style.position = 'absolute';
-        touchedImg.style.left = `${touchX - (touchedImg.width / 2)}px`;
-        touchedImg.style.top = `${touchY - (touchedImg.height / 2)}px`;
-    }
+    e.preventDefault(); 
 }
 
 function Tend(e) {
-    e.preventDefault();
-    if (touchedImg) {
-        let touch = e.changedTouches[0];
-        let touchX = touch.clientX;
-        let touchY = touch.clientY;
-        
-        let element = document.elementFromPoint(touchX, touchY);
+    let touch = e.changedTouches[0];
+    let element = document.elementFromPoint(touch.clientX, touch.clientY);
 
-        if (element && element.tagName === "IMG" && element !== touchedImg) {
-            nextImg = element;
-            Dend(); 
-        }
-
-        touchedImg.style.position = '';
-        touchedImg.style.left = '';
-        touchedImg.style.top = '';
-        touchedImg = null;
+    if (element.tagName === "IMG") {
+        nextImg = element;
+        Dend(); 
     }
-    dragSound.pause(); 
+    e.preventDefault();
+
+    dragSound.pause();
     dragSound.currentTime = 0;
 }
 
