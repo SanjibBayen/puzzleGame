@@ -35,9 +35,12 @@ window.onload = function () {
     }
 };
 const dragSound = document.getElementById('dragSound');
+document.addEventListener('click', () => {
+    dragSound.play().catch(() => {}); 
+});
 function Dstart(e) {
     thisImg = this;
-    dragSound.play();
+    // dragSound.play();
 }
 
 function Dover(e) {
@@ -88,7 +91,7 @@ if(!nextImg.src.includes("picture/3.jpg"))
 
      turn=turn+1;
     document.getElementById("turn").innerText=turn;
-
+    dragSound.play().catch(() => {});
 
     if (checkWin()) {
         setTimeout(function () {
@@ -96,14 +99,14 @@ if(!nextImg.src.includes("picture/3.jpg"))
         }, 200);
     }
     }
-    dragSound.pause();
-    dragSound.currentTime = 0;
-}
+//     dragSound.pause();
+//     dragSound.currentTime = 0;
+ }
 
 function Tstart(e) {
     thisImg = e.target;
     e.preventDefault();
-    dragSound.play();
+    // dragSound.play();
 }
 
 function Tmove(e) {
@@ -119,9 +122,9 @@ function Tend(e) {
         Dend(); 
     }
     e.preventDefault();
-
-    dragSound.pause();
-    dragSound.currentTime = 0;
+    dragSound.play().catch(() => {});
+    // dragSound.pause();
+    // dragSound.currentTime = 0;
 }
 
 function checkWin() {
