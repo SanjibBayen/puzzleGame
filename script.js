@@ -26,6 +26,10 @@ window.onload = function () {
             imgS.addEventListener("drop", Ddrop);
             imgS.addEventListener("dragend", Dend);
 
+            imgS.addEventListener("touchstart", Tstart);
+            imgS.addEventListener("touchmove", Tmove);
+            imgS.addEventListener("touchend", Tend);
+
             document.getElementById("board").append(imgS);
         }
     }
@@ -89,6 +93,26 @@ if(!nextImg.src.includes("picture/3.jpg"))
         }, 200);
     }
     }
+}
+//touch for mobile
+function Tstart(e) {
+    thisImg = e.target;
+    e.preventDefault();
+}
+
+function Tmove(e) {
+    e.preventDefault(); // Prevent default touch behavior like scrolling
+}
+
+function Tend(e) {
+    let touch = e.changedTouches[0];
+    let element = document.elementFromPoint(touch.clientX, touch.clientY);
+
+    if (element.tagName === "IMG") {
+        nextImg = element;
+        Dend(); // Call the Dend function to check swap logic
+    }
+    e.preventDefault();
 }
 
 function checkWin() {
