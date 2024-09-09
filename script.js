@@ -122,7 +122,7 @@ function Tend(e) {
         Dend(); 
     }
     e.preventDefault();
-    dragSound.play().catch(() => {});
+    // dragSound.play().catch(() => {});
     // dragSound.pause();
     // dragSound.currentTime = 0;
 }
